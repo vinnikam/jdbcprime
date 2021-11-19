@@ -1,11 +1,13 @@
 package co.ucentral.vinni.jdbcprime.dao;
 
 import co.ucentral.vinni.jdbcprime.modelo.Familia;
+import lombok.extern.log4j.Log4j2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+@Log4j2
 public class OperacionesFamilia implements Operacion<Familia>{
 
     private final String sqlCrear= "INSERT INTO familia2(descripcion, nombre) VALUES (?, ?)";
@@ -28,7 +30,7 @@ public class OperacionesFamilia implements Operacion<Familia>{
                 }
 
             } catch (SQLException e) {
-                e.printStackTrace();
+               log.error("No se puede guardar la familia ", e);
             } finally {
                 mc.desconexion(conexActiva);
             }
